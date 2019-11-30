@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutorAPIService } from '../service/autor-api.service';
-import { Autor } from '../autor';
+import { Editora } from '../editora';
 
 @Component({
   selector: 'has-lista-autor',
@@ -8,13 +8,13 @@ import { Autor } from '../autor';
   styleUrls: ['./lista-autor.component.css']
 })
 export class ListaAutorComponent implements OnInit {
-  autores : Autor[];
+  editoras : Editora[];
   constructor(private service: AutorAPIService) { }
 
   ngOnInit() {
       this.service
-          .getAutores()
-          .subscribe((data: Autor[])=>  this.autores = data,
+          .getEditoras()
+          .subscribe((data: Editora[])=>  this.editoras = data,
                       error => console.log(error));                  
   }
 

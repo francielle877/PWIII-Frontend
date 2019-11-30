@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';  
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError} from 'rxjs/operators';
-import { Autor } from '../autor';
+import { Editora } from '../editora';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Autor } from '../autor';
 
 })
 export class AutorAPIService {
-  apiURL: string = "http://localhost:8080/api/autores";
+  apiURL: string = "http://localhost:8484/bibliotecadigital/editoras";
   constructor(private httpClient: HttpClient) { }
 
   handleError(error) {
@@ -25,13 +25,13 @@ export class AutorAPIService {
     return throwError(errorMessage);
   }
 
-  getAutores(): Observable<Autor[]> {
-    return this.httpClient.get<Autor[]>(this.apiURL)
+  getEditoras(): Observable<Editora[]> {
+    return this.httpClient.get<Editora[]>(this.apiURL)
       .pipe(retry(1),
         catchError(this.handleError));
   }
-  createAutor(aut: Autor): Observable<Autor> {
-    return this.httpClient.post<Autor>(`${this.apiURL}`, aut)
+  createEditora(aut: Editora): Observable<Editora> {
+    return this.httpClient.post<Editora>(`${this.apiURL}`, aut)
     .pipe(retry(1),
     catchError(this.handleError));
     }
